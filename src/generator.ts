@@ -8,19 +8,20 @@ import {
   getDelimiter,
   getIdNumber,
   getChecksum,
-} from './util';
+} from './ssnUtils';
+import { InvalidInputError } from './errors';
 
 const runGenerate = (input: string): SSN => {
   if (input.length === 0) {
     return generateFull();
   }
-  if (isDateOfBirthInput(input)) {
-    return generateFromDateOfBirth(input);
-  }
-  if (isAgeSexInput(input)) {
-    return generateFromAgeAndSex(input);
-  }
-  throw new Error('Invalid input');
+  // if (isDateOfBirthInput(input)) {
+  //   return generateFromDateOfBirth(input);
+  // }
+  // if (isAgeSexInput(input)) {
+  //   return generateFromAge(input);
+  // }
+  throw new InvalidInputError();
 };
 
 const generateFull = (): SSN => {
@@ -38,7 +39,7 @@ const generateFromDateOfBirth = (birthday: DateOfBirthInput): SSN => {
   return '010107A917U';
 };
 
-const generateFromAgeAndSex = (ageAndSex: AgeSexInput): SSN => {
+const generateFromAge = (ageAndSex: AgeSexInput): SSN => {
   // TODO
   return '010107A917U';
 };
